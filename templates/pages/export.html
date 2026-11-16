@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="phero phero-img">
+  <div class="wrap phero-grid">
+    <div>
+      {{ m.crumbs([('Export enquiries', 'export.html')], root) }}
+      <h1>Used gensets and motors for export</h1>
+      <p class="lede">We supply refurbished generator sets and industrial motors to buyers outside India, shipped from Mumbai with inspection and export documents arranged.</p>
+      <dl class="keyfacts keyfacts-row">
+        <div><dt>Port</dt><dd>Nhava Sheva / Mumbai</dd></div>
+        <div><dt>Payment</dt><dd>Advance or letter of credit</dd></div>
+      </dl>
+    </div>
+    <figure class="hero-ph">{{ m.photo('d-container-ship', sizes='(max-width:860px) 100vw, 560px', eager=true) }}</figure>
+  </div>
+</section>
+<section class="sec">
+  <div class="wrap">
+    <figure class="band mb0">{{ m.photo('d-port-aerial', sizes='100vw') }}</figure>
+    <h2 class="mt3">How an export order works</h2>
+    <ol class="steps mt2">
+      <li><h3>Requirement</h3><p>Send rating, voltage, frequency (50 or 60 Hz) and destination.</p></li>
+      <li><h3>Offer</h3><p>Matching units with photos, running video and FOB or CIF price.</p></li>
+      <li><h3>Inspection</h3><p>Third-party pre-shipment inspection where your country requires it.</p></li>
+      <li><h3>Payment</h3><p>Advance payment or a letter of credit from your bank.</p></li>
+      <li><h3>Shipping</h3><p>Packing, export documents and shipment through our freight agent.</p></li>
+    </ol>
+  </div>
+</section>
+<section class="sec sec-steel" id="quote">
+  <div class="wrap split">
+    <div>
+      <h2>Send an export enquiry</h2>
+      <p class="lede">Write to us on WhatsApp or email with your requirement and destination country.</p>
+      <p><a href="mailto:{{ site.email }}?subject=Export%20enquiry">{{ site.email }}</a></p>
+    </div>
+    {{ m.quote_form(root, need='export', heading='Export enquiry') }}
+  </div>
+</section>
+{% endblock %}
+{% block cta %}{% endblock %}

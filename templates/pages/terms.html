@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="phero"><div class="wrap">{{ m.crumbs([('Terms', 'terms.html')], root) }}<h1>Terms of sale and use</h1><p class="lede mb0">The basics. Each quotation and warranty card carries the full terms for that machine.</p></div></section>
+<section class="sec"><div class="wrap prose">
+<h2>Listings and prices</h2>
+<p>Stock and prices on this site are updated regularly but can change without notice. A machine is reserved only once we confirm it in writing and receive an advance. Prices exclude GST and transport unless stated.</p>
+<h2>Payment</h2>
+<p>Payment by bank transfer to {{ site.name }} against a GST tax invoice. Standard terms: advance on order, balance before dispatch, unless agreed otherwise in writing.</p>
+<h2>Inspection and warranty</h2>
+<p>You may inspect and see any machine run before purchase. Warranty terms are printed on the warranty card supplied with the machine. See <a href="{{ root }}quality.html">how we test and warranty</a>.</p>
+<h2>Hire</h2>
+<p>Rental is governed by the hire terms on the <a href="{{ root }}rental.html">rental page</a> and your hire agreement.</p>
+<h2>Brand names</h2>
+<p>Manufacturer names and trademarks belong to their owners and are used only to describe the equipment we sell or service.</p>
+<h2>Jurisdiction</h2>
+<p>These terms are governed by Indian law. Courts in Mumbai have jurisdiction.</p>
+<p class="small">{{ site.legal }}, GSTIN {{ site.gstin }}. Last updated {{ site.updated }}.</p>
+</div></section>
+{% endblock %}

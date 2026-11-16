@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="phero">
+  <div class="wrap">
+    {{ m.crumbs([('Stock', 'stock.html'), (u.id, u.url)], root) }}
+    <span class="unit-id">Stock {{ u.id }}</span>
+    <h1>{{ u.title }}</h1>
+    <p class="lede mb0">{{ u.note }}</p>
+  </div>
+</section>
+
+<section class="sec-tight">
+  <div class="wrap unit-page">
+    <div>
+      <div class="ugal" data-gallery>
+        <figure class="ugal-main">{{ m.photo(u.photo, sizes='(max-width:960px) 100vw, 780px', eager=true, alt=u.title ~ ', photo 1') }}</figure>
+        {% if u.photos|length > 1 %}
+        <div class="ugal-thumbs" role="group" aria-label="More photos">
+          {% for p in u.photos %}{% set pp = ph('p-' ~ p) %}
+          <button type="button" class="ugal-t" aria-label="Show photo {{ loop.index }}" aria-pressed="{{ 'true' if loop.first else 'false' }}" data-src="{{ root }}static/photos/{{ pp.large }}" data-alt="{{ u.title }}, photo {{ loop.index }}">{{ m.photo('p-' ~ p, sizes='120px', alt='') }}</button>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      <p class="photo-note">Photos of this listing from our yard. A running video is sent on WhatsApp on request.</p>
+
+      <div class="plate mt3" role="group" aria-label="Specifications">
+        <div class="plate-head"><p class="plate-title">{{ u.rating_txt }} {{ u.kind }}</p><span class="plate-ref">No. {{ u.id }}</span></div>
+        <dl class="plate-grid">
+          <div><dt>Make</dt><dd>{{ u.brand if u.brand != 'Ask' else 'On request' }}</dd></div>
+          <div><dt>Rating</dt><dd>{{ u.rating_txt }}</dd></div>
+          <div><dt>Year</dt><dd>{{ u.year_txt }}</dd></div>
+          {% if u.type == 'genset' %}<div><dt>Hours run</dt><dd>{{ u.hours }}</dd></div>{% endif %}
+          <div><dt>Enclosure</dt><dd>{{ u.enclosure }}</dd></div>
+          <div><dt>Condition</dt><dd>{{ u.grade_label }}</dd></div>
+          {% for k, v in u.extra %}<div><dt>{{ k }}</dt><dd>{{ v }}</dd></div>{% endfor %}
+        </dl>
+        <div class="plate-foot"><span>Location: Darukhana yard, Mumbai</span><span>Checked {{ site.updated }}</span></div>
+      </div>
+
+      <div class="split mt3">
+        <div>
+          <h2>{{ u.grade_label }}</h2>
+          <p>{{ u.grade_desc }}</p>
+          {% if u.grade == 'A' %}
+          <ul class="ticks">
+            <li>Full-load trial at our yard before dispatch</li>
+            <li>Signed test report with readings</li>
+            <li>Written warranty: {{ site.std_warranty }} as standard</li>
+            <li>On-site troubleshooting support</li>
+          </ul>
+          {% else %}
+          <ul class="ticks">
+            <li>Inspection report on request</li>
+            <li>See it running at our yard before you decide</li>
+            <li>Overhaul to Grade A available, quoted separately</li>
+          </ul>
+          {% endif %}
+        </div>
+        <div>
+          <h2>What we can arrange</h2>
+          <ul class="ticks">
+            <li>Transport to your site anywhere in India</li>
+            <li>Installation and commissioning</li>
+            {% if u.type == 'genset' %}<li>RECD fitting if your site needs MPCB compliance</li>{% endif %}
+            <li>Annual maintenance contract</li>
+            <li>GST invoice from {{ site.name }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="unit-aside">
+      <div class="panel">
+        <div class="price">{% if u.price_txt %}{{ u.price_txt }}<small>Asking price + GST. Transport extra.</small>{% else %}Price on request<small>Ask on WhatsApp for today's price.</small>{% endif %}</div>
+        <div class="actions mt2" style="flex-direction:column;align-items:stretch">
+          <a class="btn btn-wa" href="{{ m.wa_link(u.wa_text) }}" rel="noopener">{{ m.icon('wa') }}Ask about {{ u.id }}</a>
+          <a class="btn btn-line" href="tel:{{ site.phone_sales_tel }}">{{ m.icon('phone') }}Call {{ site.phone_sales }}</a>
+          <a class="btn btn-line" href="{{ root }}contact.html?unit={{ u.id }}#quote">Request a written quote</a>
+        </div>
+        <p class="small mt2 mb0">{{ site.reply_promise }} Quote stock number <strong>{{ u.id }}</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-white">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="mb0">Similar machines in stock</h2><a class="link" href="{{ root }}stock.html?type={{ u.type }}">All {{ 'gensets' if u.type == 'genset' else 'motors' }}</a></div>
+    <div class="units">{% for s in similar %}{{ m.unit_card(s, root) }}{% endfor %}</div>
+  </div>
+</section>
+{% endblock %}

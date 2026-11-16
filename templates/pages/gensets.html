@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="phero phero-img">
+  <div class="wrap phero-grid">
+    <div>
+      {{ m.crumbs([('Diesel generator sets', 'gensets.html')], root) }}
+      <h1>Diesel generator sets, used and new</h1>
+      <p class="lede">Silent and open sets from {{ site.genset_range }}: refurbished used sets for value, new CPCB IV+ sets where you need the latest emission standard, and rental while you decide.</p>
+      <dl class="keyfacts keyfacts-row">
+        <div><dt>Range</dt><dd>{{ site.genset_range }}</dd></div>
+        <div><dt>Types</dt><dd>Silent, open, portable, marine</dd></div>
+        <div><dt>Used sets</dt><dd>Load-tested, {{ site.std_warranty }} warranty</dd></div>
+      </dl>
+    </div>
+    <figure class="hero-ph">{{ m.photo('p-g-0380-cu-b-2', sizes='(max-width:860px) 100vw, 560px', eager=true) }}</figure>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2>Used or new?</h2>
+    <p class="lede">Both make sense. It depends on how many hours the set will run and the rules at your site.</p>
+    <div class="table-wrap mt2">
+      <table>
+        <thead><tr><th scope="col"><span class="vh">Compare</span></th><th scope="col">Refurbished used set</th><th scope="col">New CPCB IV+ set</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Price</th><td>Usually 40–60% below a new set of the same size</td><td>Full list price; new emission technology costs more</td></tr>
+          <tr><th scope="row">Availability</th><td>From the yard, often dispatched within days</td><td>Depends on the maker's stock</td></tr>
+          <tr><th scope="row">Warranty</th><td>HOPE written warranty, {{ site.std_warranty }} as standard</td><td>Manufacturer's warranty</td></tr>
+          <tr><th scope="row">Emission rules</th><td>Older sets of 61 kW and above may need an RECD in Maharashtra. We fit it.</td><td>Meets the current CPCB IV+ standard for new sets</td></tr>
+          <tr><th scope="row">Best for</th><td>Standby power, sites, budget-conscious buyers, quick replacement</td><td>Long running hours, new buildings, strict compliance sites</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="actions mt2"><a class="btn btn-red" href="stock.html?type=genset">See used gensets in stock</a><a class="btn btn-line" href="contact.html?need=buy-new#quote">Ask for a new-set quote</a></div>
+  </div>
+</section>
+
+<section class="sec sec-white">
+  <div class="wrap">
+    <h2>What size do you need?</h2>
+    <p class="lede">A starting point. We confirm the size from your connected load and motor starting currents before you buy.</p>
+    <div class="table-wrap mt2">
+      <table>
+        <thead><tr><th scope="col">Typical use</th><th scope="col">Usual size</th><th scope="col">Common choice</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Shop, small office, site lighting</th><td class="num">5 – 15 kVA</td><td>Portable petrol or small silent diesel set</td></tr>
+          <tr><th scope="row">Clinic, office floor, small workshop</th><td class="num">15 – 62.5 kVA</td><td>Silent diesel set with AMF panel</td></tr>
+          <tr><th scope="row">Small factory, hotel, housing society</th><td class="num">62.5 – 250 kVA</td><td>Silent set, often with RECD in Maharashtra</td></tr>
+          <tr><th scope="row">Large factory, hospital, mall</th><td class="num">250 – 1,000 kVA</td><td>Silent or open set, sometimes two in parallel</td></tr>
+          <tr><th scope="row">Process plants, mills, data and telecom sites</th><td class="num">1,000 kVA and above</td><td>Open sets in a plant room, prime or standby duty</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="mb0">Browse diesel generators</h2><a class="link" href="stock.html?type=genset">Gensets in stock</a></div>
+    <div class="cats">{% for s in mega[0][2] %}{{ m.cat_card(cats[s], root) }}{% endfor %}</div>
+  </div>
+</section>
+
+<section class="sec-tight sec-white">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="mb0">Alternators and spares</h2><a class="link" href="{{ m.wa_link('Hello HOPE, I need an alternator / spare. Rating: ___ Make: ___') }}" rel="noopener">Ask for a part</a></div>
+    <p class="lede">Stamford and other alternators, AMF panels and spare engines, from our yard or sourced to order. Also tractor PTO and welding generators.</p>
+    <div class="gallery g-4 mt2">
+      <figure>{{ m.photo('p-alternator-4', sizes='(max-width:600px) 50vw, 300px') }}<figcaption>Alternator on a test frame</figcaption></figure>
+      <figure>{{ m.photo('p-alternator-1', sizes='(max-width:600px) 50vw, 300px') }}<figcaption>Alternators in stock</figcaption></figure>
+      <figure>{{ m.photo('p-alternator-2', sizes='(max-width:600px) 50vw, 300px') }}<figcaption>Packed for dispatch</figcaption></figure>
+      <figure>{{ m.photo('p-g-0015-ko-3', sizes='(max-width:600px) 50vw, 300px', alt='Genset control panel') }}<figcaption>Control and AMF panels</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-white" id="brands">
+  <div class="wrap">
+    <div class="sec-head"><div><h2 class="mb0">Brands</h2><p class="lede mt1">We buy, refurbish and sell sets with engines from these makers, and supply new sets on order. Buying new? Tell us the brand you prefer and we will quote the current CPCB IV+ model.</p></div></div>
+    {{ m.brand_wall(root, brand_wall, brand_others) }}
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split">
+    <div><h2>Questions buyers ask</h2></div>
+    <div class="faq">
+      <details><summary>Can I see the set running before I pay?</summary><p>Yes. Every Grade A set gets a full-load trial at our Darukhana yard, and you are welcome to attend. If you can't visit, we send a running video on WhatsApp.</p></details>
+      <details><summary>What does the warranty cover?</summary><p>Refurbished sets come with a written HOPE warranty, {{ site.std_warranty }} as standard, on the engine and alternator. The period is printed on the warranty card. See <a href="quality.html">how we test and warranty</a>.</p></details>
+      <details><summary>Can I use a used genset in Maharashtra?</summary><p>Yes. Sets of 61 kW and above may need an emission control device (RECD) under MPCB rules, depending on your site. We tell you before you buy and can fit it. See <a href="recd-compliance.html">RECD compliance</a>.</p></details>
+      <details><summary>Do you deliver outside Mumbai?</summary><p>Yes, across India. We arrange transport, unloading, installation and commissioning.</p></details>
+      <details><summary>Will you take my old set in part exchange?</summary><p>Usually, yes. We inspect it and give you an offer. See <a href="sell.html">sell to us</a>.</p></details>
+    </div>
+  </div>
+</section>
+{% endblock %}

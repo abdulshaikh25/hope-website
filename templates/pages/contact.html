@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="phero phero-img">
+  <div class="wrap phero-grid">
+    <div>
+      {{ m.crumbs([('Contact', 'contact.html')], root) }}
+      <h1>Contact HOPE</h1>
+      <p class="lede">The fastest way to reach us is WhatsApp. {{ site.reply_promise }}</p>
+      
+    </div>
+    <figure class="hero-ph">{{ m.photo('d-mumbai-gateway', sizes='(max-width:860px) 100vw, 560px', eager=true) }}</figure>
+  </div>
+</section>
+
+<section class="sec-tight">
+  <div class="wrap">
+    <div class="facts">
+      <div class="fact"><strong>Sales</strong><span><a href="tel:{{ site.phone_sales_tel }}">{{ site.phone_sales }}</a> (call or WhatsApp)</span></div>
+      <div class="fact"><strong>Service</strong><span><a href="tel:{{ site.phone_support_tel }}">{{ site.phone_support }}</a></span></div>
+      <div class="fact"><strong>Email</strong><span><a href="mailto:{{ site.email }}">{{ site.email }}</a></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-steel" id="quote">
+  <div class="wrap split">
+    {{ m.quote_form(root, heading='Request a quote', level=2) }}
+    <div id="visit">
+      <h2>Visit the yard</h2>
+      <address style="font-style:normal">
+        <strong>{{ site.name }}</strong><br>
+        {{ site.street }}<br>{{ site.landmark }}<br>{{ site.city }} {{ site.pin }}, {{ site.state }}
+      </address>
+      <p class="mt2"><strong>Open:</strong> {{ site.hours }}. Closed Sundays.</p>
+      <a class="btn btn-line" href="{{ site.maps }}" rel="noopener">Directions on Google Maps</a>
+      <h3 class="mt3">Billing details</h3>
+      <p>{{ site.legal }}<br>GSTIN {{ site.gstin }}</p>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block cta %}{% endblock %}

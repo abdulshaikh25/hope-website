@@ -1,0 +1,172 @@
+{% import 'macros.html' as m with context -%}
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<script>(function(d){d.classList.add("js");try{if(!sessionStorage.getItem("hope-intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){d.classList.add("has-intro");sessionStorage.setItem("hope-intro","1")}}catch(e){}})(document.documentElement)</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ page.title }}</title>
+<meta name="description" content="{{ page.description }}">
+<link rel="canonical" href="{{ site.base }}/{{ page.canonical }}">
+<meta name="theme-color" content="#1C2127">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:title" content="{{ page.title }}">
+<meta property="og:description" content="{{ page.description }}">
+<meta property="og:url" content="{{ site.base }}/{{ page.canonical }}">
+<meta property="og:locale" content="en_IN">
+<link rel="icon" href="{{ root }}static/img/favicon.ico" sizes="any">
+<link rel="icon" href="{{ root }}static/img/favicon-48.png" type="image/png">
+<link rel="apple-touch-icon" href="{{ root }}static/img/apple-touch-icon.png">
+<meta property="og:image" content="{{ site.base }}/static/img/logo-512.png">
+<link rel="preload" href="{{ root }}static/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ root }}static/fonts/barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ root }}static/css/site.css">
+<script type="application/ld+json">{{ org_schema|tojson }}</script>
+{% if page.schema %}{% for s in page.schema %}<script type="application/ld+json">{{ s|tojson }}</script>
+{% endfor %}{% endif %}
+</head>
+<body>
+<div class="intro-screen" aria-hidden="true">
+  <div class="intro-bg">
+    <svg class="intro-fx" focusable="false">
+      <defs><filter id="fxGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+      <circle class="fx-shock" fill="none" r="0"/>
+      <circle class="fx-iris" fill="none" r="0"/>
+      <path class="fx-wave" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#fxGlow)"/>
+      <circle class="fx-head" r="0" fill="#fff" filter="url(#fxGlow)"/>
+    </svg>
+  </div>
+  <div class="intro-stage">
+    <div class="intro-bloom"></div>
+    {{ m.logo_svg(site.logo_year, 'intro-logo') }}
+  </div>
+  <p class="intro-hint"><span class="ih-mouse">Click or press any key to skip</span><span class="ih-touch">Tap to skip</span></p>
+</div>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="strip" aria-label="Quick contact">
+  <div class="wrap">
+    <div class="strip-items">
+      <span class="strip-addr">Darukhana, Mazagaon, Mumbai 400010</span>
+      <span class="strip-hours">{{ site.hours }}</span>
+    </div>
+    <div class="strip-items">
+      <a href="tel:{{ site.phone_sales_tel }}">Sales {{ site.phone_sales }}</a>
+      <a href="tel:{{ site.phone_support_tel }}">Service {{ site.phone_support }}</a>
+    </div>
+  </div>
+</aside>
+<header class="site-head">
+  <div class="wrap head-in">
+    <a class="brand" href="{{ root }}index.html">
+      <img class="brand-mark" src="{{ root }}static/img/logo-112.webp" alt="" width="52" height="52">
+      <span class="brand-name">HOPE <span class="brand-sub">House of Power Equipments</span></span>
+    </a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">{{ m.icon('menu') }}Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <ul>
+        {% for key, label, href in nav %}
+        {% if key == 'products' %}
+        <li class="has-mega">
+          <button class="mega-btn" type="button" aria-expanded="false" aria-controls="mega"{% if page.nav in ('products','gensets','motors') %} aria-current="true"{% endif %}>Products{{ m.icon('chev') }}</button>
+          <div class="mega" id="mega">
+            <div class="wrap mega-in">
+              {% for heading, hub, slugs in mega %}
+              <div class="mega-col">
+                <p class="mega-h">{% if hub %}<a href="{{ root }}{{ hub }}">{{ heading }}</a>{% else %}{{ heading }}{% endif %}</p>
+                <ul>
+                  {% if hub %}<li><a href="{{ root }}{{ hub }}">All {{ heading|lower }}</a></li>{% endif %}
+                  {% for s in slugs %}<li><a href="{{ root }}{{ cats[s].url }}">{{ cats[s].short }}</a></li>{% endfor %}
+                </ul>
+                {% if not hub %}<div class="mega-help"><strong>Need help choosing?</strong><span>Tell us the load and site. An engineer will suggest the right rating.</span><a href="tel:{{ site.phone_sales_tel }}">{{ m.icon('phone') }}{{ site.phone_sales }}</a></div>{% endif %}
+              </div>
+              {% endfor %}
+              <a class="mega-promo" href="{{ root }}stock.html">
+                {{ m.photo('p-g-0380-cu-1', sizes='280px', alt='') }}
+                <span><strong>Stock available now</strong>{{ units|length }} machines in the Darukhana yard, with photos and grades.</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        {% else %}
+        <li><a href="{{ root }}{{ href }}"{% if page.nav == key %} aria-current="page"{% endif %}>{{ label }}</a></li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+    </nav>
+    <div class="head-cta">
+      <a class="btn btn-wa btn-sm" href="{{ m.wa_link('Hello HOPE, I have an enquiry.') }}" rel="noopener">{{ m.icon('wa') }}WhatsApp</a>
+      <a class="btn btn-red btn-sm" href="{{ root }}contact.html#quote">Get a quote</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+{% block main %}{% endblock %}
+</main>
+
+{% block cta %}{{ m.cta_band('Looking for a genset or motor?', 'Send the size and site. We reply with what is in the yard, price and photos.', root) }}{% endblock %}
+
+<footer class="foot">
+  <div class="wrap">
+    <h2 class="vh">About HOPE and site links</h2>
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand"><img src="{{ root }}static/img/logo-112.webp" alt="" width="56" height="56" loading="lazy"><h3>House of Power Equipments</h3></div>
+        <p>Used and new diesel generator sets, electric motors and power equipment. Tested in our Darukhana yard before dispatch. A Delhiwala family business, established {{ site.est }}.</p>
+        <p class="mb0">GSTIN {{ site.gstin }}</p>
+      </div>
+      <div>
+        <h3>Products</h3>
+        <ul>
+          <li><a href="{{ root }}stock.html">Stock available now</a></li>
+          <li><a href="{{ root }}products/used-dg-sets.html">Used DG sets</a></li>
+          <li><a href="{{ root }}products/new-dg-sets.html">New DG sets</a></li>
+          <li><a href="{{ root }}products/silent-generators.html">Silent generators</a></li>
+          <li><a href="{{ root }}products/industrial-gensets.html">Industrial gensets</a></li>
+          <li><a href="{{ root }}motors.html">Electric motors</a></li>
+          <li><a href="{{ root }}products/power-transformers.html">Transformers</a></li>
+          <li><a href="{{ root }}other-equipment.html">Pumps, compressors, cranes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Services</h3>
+        <ul>
+          <li><a href="{{ root }}rental.html">Genset rental</a></li>
+          <li><a href="{{ root }}recd-compliance.html">RECD and MPCB compliance</a></li>
+          <li><a href="{{ root }}service-amc.html">Service and AMC</a></li>
+          <li><a href="{{ root }}quality.html">How we test and warranty</a></li>
+          <li><a href="{{ root }}export.html">Export enquiries</a></li>
+          <li><a href="{{ root }}industries.html">Industries we serve</a></li>
+          <li><a href="{{ root }}sell.html">Sell your equipment</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Visit or call</h3>
+        <ul class="foot-contact">
+          <li>{{ m.icon('pin') }}<span><address>{{ site.street }}<br>{{ site.landmark }}<br>{{ site.city }} {{ site.pin }}, {{ site.state }}</address><a href="{{ site.maps }}" rel="noopener">Get directions</a></span></li>
+          <li>{{ m.icon('phone') }}<a href="tel:{{ site.phone_sales_tel }}">Sales {{ site.phone_sales }}</a></li>
+          <li>{{ m.icon('phone') }}<a href="tel:{{ site.phone_support_tel }}">Service {{ site.phone_support }}</a></li>
+          <li>{{ m.icon('mail') }}<a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+          <li>{{ m.icon('clock') }}<span class="foot-plain">{{ site.hours }}</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>© <span data-year>2026</span> {{ site.name }}. Darukhana, Mumbai.</span>
+      <ul class="foot-legal-links"><li><a href="{{ root }}about.html">About</a></li><li><a href="{{ root }}privacy.html">Privacy</a></li><li><a href="{{ root }}terms.html">Terms</a></li><li><a href="{{ root }}contact.html">Contact</a></li></ul>
+    </div>
+  </div>
+</footer>
+
+<nav class="mbar" aria-label="Quick contact">
+  <a href="tel:{{ site.phone_sales_tel }}">{{ m.icon('phone') }}Call</a>
+  <a class="wa" href="{{ m.wa_link('Hello HOPE, I have an enquiry.') }}" rel="noopener">{{ m.icon('wa') }}WhatsApp</a>
+  <a class="q" href="{{ root }}contact.html#quote">{{ m.icon('quote') }}Get a quote</a>
+</nav>
+
+<script>window.HOPE={wa:"{{ site.wa }}",email:"{{ site.email }}",endpoint:""};</script>
+<script src="{{ root }}static/js/site.js" defer></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

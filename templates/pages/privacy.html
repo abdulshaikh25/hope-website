@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="phero"><div class="wrap">{{ m.crumbs([('Privacy', 'privacy.html')], root) }}<h1>Privacy</h1><p class="lede mb0">How House of Power Equipments uses the details you share with us.</p></div></section>
+<section class="sec"><div class="wrap prose">
+<h2>What we collect</h2>
+<p>Only what you send us: your name, phone number, company, city and the details of your enquiry, through WhatsApp, phone, email or the enquiry form on this site.</p>
+<h2>How we use it</h2>
+<p>To reply to your enquiry, send quotations and invoices, and provide service on equipment you buy or hire from us. We do not sell or rent your details to anyone.</p>
+<h2>Website statistics</h2>
+<p>This site may use privacy-friendly visitor statistics to count page views. They do not identify you personally.</p>
+<h2>WhatsApp</h2>
+<p>When you press a WhatsApp button, your message is sent through WhatsApp, which has its own privacy policy.</p>
+<h2>Your choices</h2>
+<p>Ask us at any time to see, correct or delete the details we hold about you: <a href="mailto:{{ site.email }}">{{ site.email }}</a> or {{ site.phone_sales }}.</p>
+<p class="small">Last updated {{ site.updated }}.</p>
+</div></section>
+{% endblock %}

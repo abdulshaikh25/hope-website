@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="phero phero-img">
+  <div class="wrap phero-grid">
+    <div>
+      {{ m.crumbs([('How we test and warranty', 'quality.html')], root) }}
+      <h1>How we test, and what our warranty covers</h1>
+      <p class="lede">Buying used should not be a gamble. This is exactly what happens to a machine before we sell it, and what we put in writing.</p>
+      
+    </div>
+    <figure class="hero-ph">{{ m.photo('d-engineer-checklist', sizes='(max-width:860px) 100vw, 560px', eager=true) }}</figure>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2>Before a genset is listed as Grade A</h2>
+    <div class="gallery g-4 mt2">
+      <figure>{{ m.photo('d-mech-machine', sizes='(max-width:700px) 100vw, 380px') }}</figure>
+      <figure>{{ m.photo('d-worker-machining', sizes='(max-width:700px) 100vw, 380px') }}</figure>
+      <figure>{{ m.photo('p-g-0625-cu-4', sizes='(max-width:700px) 100vw, 380px', alt='Cummins engine data plate recorded during inspection') }}<figcaption>Engine data plate, recorded on the test report.</figcaption></figure>
+      <figure>{{ m.photo('p-g-0380-cu-7', sizes='(max-width:700px) 100vw, 380px', alt='Engine bay of a refurbished genset') }}<figcaption>Engine bay after refurbishment.</figcaption></figure>
+    </div>
+    <ol class="steps mt2">
+      <li><h3>Inspect</h3><p>Engine, alternator, controls, radiator and canopy checked. Engine and alternator serial numbers and hour-meter reading recorded.</p></li>
+      <li><h3>Strip and clean</h3><p>Opened up and cleaned. Wear parts measured against limits.</p></li>
+      <li><h3>Replace</h3><p>Worn parts replaced; fresh oil, filters and coolant.</p></li>
+      <li><h3>Full-load trial</h3><p>Run on a load at our yard. Voltage, frequency, oil pressure and temperature recorded.</p></li>
+      <li><h3>Certify</h3><p>Test report signed and handed over with a written warranty card.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec sec-white">
+  <div class="wrap split">
+    <div>
+      <h2>What is on the test report</h2>
+      <ul class="ticks">
+        <li>Stock number, make, model and rating</li>
+        <li>Engine and alternator serial numbers</li>
+        <li>Hour-meter reading and year of manufacture</li>
+        <li>Load applied and test duration</li>
+        <li>Voltage, frequency and current at load</li>
+        <li>Oil pressure, coolant temperature and smoke check</li>
+        <li>Insulation resistance of the alternator or motor</li>
+        <li>Parts replaced during refurbishment</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Warranty</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Machine</th><th scope="col">Warranty</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Grade A refurbished genset</th><td>{{ site.std_warranty|capitalize }} on engine and alternator, written on the warranty card</td></tr>
+            <tr><th scope="row">Grade B (as inspected)</th><td>Sold as seen after inspection; warranty if overhauled to Grade A</td></tr>
+            <tr><th scope="row">New set</th><td>Manufacturer's warranty</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small mt2">Warranty does not cover consumables (filters, belts, batteries, rubber parts), damage from overloading beyond rating, or repairs by others. Full terms are printed on the warranty card.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split">
+    <div><h2>See it for yourself</h2><p class="lede">Visit our Darukhana yard and watch your machine run on load before you pay. If you can't come, we send a video of the test.</p></div>
+    <div class="actions"><a class="btn btn-red" href="contact.html#visit">Plan a yard visit</a><a class="btn btn-line" href="stock.html">See stock</a></div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="phero phero-img">
+  <div class="wrap phero-grid">
+    <div>
+      {{ m.crumbs([('Sell your equipment', 'sell.html')], root) }}
+      <h1>Sell us your old genset or motor</h1>
+      <p class="lede">Upgrading, closing a plant, or stuck with a set that no longer meets emission rules? We buy used gensets, motors and transformers in any condition, and remove them from your site.</p>
+      <dl class="keyfacts keyfacts-row">
+        <div><dt>We buy</dt><dd>Gensets, motors, transformers</dd></div>
+        <div><dt>Condition</dt><dd>Running or not</dd></div>
+        <div><dt>Removal</dt><dd>Arranged by HOPE</dd></div>
+      </dl>
+    </div>
+    <figure class="hero-ph">{{ m.photo('d-truck-india', sizes='(max-width:860px) 100vw, 560px', eager=true) }}</figure>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <div class="duo mt2">
+      <figure>{{ m.photo('d-workers-machine-india', sizes='(max-width:700px) 100vw, 560px') }}<figcaption>Our team inspects on site, then dismantles and removes the machine.</figcaption></figure>
+      <figure>{{ m.photo('p-g-1750-1', sizes='(max-width:700px) 100vw, 560px', alt='Generator rating plate photographed for an offer') }}<figcaption>A clear nameplate photo is all we need for a first offer.</figcaption></figure>
+    </div>
+    <ol class="steps steps-4 mt2">
+      <li><h3>Send details</h3><p>Nameplate photo, a few pictures, location and whether it runs.</p></li>
+      <li><h3>Indicative offer</h3><p>We give you a price range, usually the same day.</p></li>
+      <li><h3>Inspection</h3><p>Our team inspects on site and confirms the final price.</p></li>
+      <li><h3>Payment and removal</h3><p>Payment by bank transfer; we dismantle and remove the equipment.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec sec-steel" id="quote">
+  <div class="wrap split">
+    <div>
+      <h2>Get an offer</h2>
+      <p class="lede">The quickest way: send the nameplate photo and two or three pictures on WhatsApp.</p>
+      <a class="btn btn-wa" href="{{ m.wa_link('Hello HOPE, I want to sell: (genset/motor) ___ Rating: ___ Location: ___ Running? ___') }}" rel="noopener">{{ m.icon('wa') }}Send photos on WhatsApp</a>
+      <h3 class="mt3">Also buying</h3>
+      <ul class="ticks"><li>Whole plant-room clear-outs</li><li>Sets replaced to meet MPCB rules</li><li>Alternators, AMF panels and spare engines</li></ul>
+    </div>
+    {{ m.quote_form(root, need='sell', heading='Tell us what you are selling') }}
+  </div>
+</section>
+{% endblock %}
+{% block cta %}{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="phero phero-img">
+  <div class="wrap phero-grid">
+    <div>
+      {{ m.crumbs([('Service and AMC', 'service-amc.html')], root) }}
+      <h1>Service, overhaul and maintenance contracts</h1>
+      <p class="lede">Keep gensets and motors running: breakdown repairs, full overhauls, motor rewinding through our workshop partners, and yearly maintenance contracts (AMC) with planned visits.</p>
+      <dl class="keyfacts keyfacts-row">
+        <div><dt>Service line</dt><dd><a href="tel:{{ site.phone_support_tel }}">{{ site.phone_support }}</a></dd></div>
+        <div><dt>Hours</dt><dd>{{ site.hours }}</dd></div>
+      </dl>
+    </div>
+    <figure class="hero-ph">{{ m.photo('d-tech-toolbox-field', sizes='(max-width:860px) 100vw, 560px', eager=true) }}</figure>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2>What we do</h2>
+    <div class="rows rows-ph mt2">
+      <div class="row"><span class="row-ph">{{ m.photo('d-electrician-panel', sizes='160px', alt='') }}</span><h3>Breakdown repair</h3><p>Diagnosis and repair of gensets, AMF panels and motors at your site or our yard.</p></div>
+      <div class="row"><span class="row-ph">{{ m.photo('d-hands-engine', sizes='160px', alt='') }}</span><h3>Overhaul</h3><p>Top and major overhauls of diesel engines and alternators, with a load test after.</p></div>
+      <div class="row"><span class="row-ph">{{ m.photo('d-mech-motor-repair', sizes='160px', alt='') }}</span><h3>Motor rewinding</h3><p>LT and HT motor rewinding and bearing replacement through specialist workshop partners.</p></div>
+      <div class="row"><span class="row-ph">{{ m.photo('p-g-0100-al-4', sizes='160px', alt='') }}</span><h3>Commissioning</h3><p>Installation, earthing checks and first run for sets bought from us or elsewhere.</p></div>
+      <div class="row"><span class="row-ph">{{ m.photo('d-engineer-checklist', sizes='160px', alt='') }}</span><h3>Annual maintenance (AMC)</h3><p>Planned visits, oil and filter changes, test runs and priority breakdown response.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-tight sec-white">
+  <div class="wrap">
+    <h2>In the workshop</h2>
+    <p class="lede">Engines, alternators and motors are opened up, machined and rebuilt by our team and trusted workshop partners in Mumbai.</p>
+    <div class="gallery g-4 mt2">
+      <figure>{{ m.photo('d-workshop-india', sizes='(max-width:600px) 50vw, 300px') }}</figure>
+      <figure>{{ m.photo('d-mech-indian-machine', sizes='(max-width:600px) 50vw, 300px') }}</figure>
+      <figure>{{ m.photo('d-welding', sizes='(max-width:600px) 50vw, 300px') }}</figure>
+      <figure>{{ m.photo('d-workshop-mechanic', sizes='(max-width:600px) 50vw, 300px') }}</figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-white">
+  <div class="wrap split">
+    <div>
+      <h2>What an AMC includes</h2>
+      <p>Each AMC is priced for your set's size, hours and location. A typical contract covers:</p>
+      <ul class="ticks">
+        <li>Scheduled preventive maintenance visits</li>
+        <li>Oil, filter and coolant changes (consumables billed at cost)</li>
+        <li>Battery, AVR and AMF panel checks</li>
+        <li>Load test and a written service report each visit</li>
+        <li>Priority response to breakdown calls</li>
+        <li>RECD check and cleaning where fitted</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3 class="mt0">Bought a set from us?</h3>
+      <p>Used sets from HOPE come with on-site troubleshooting support during the warranty period. Add an AMC at purchase to keep the set covered after that.</p>
+      <a class="btn btn-red" href="contact.html?need=service#quote">Ask for an AMC quote</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

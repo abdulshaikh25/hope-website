@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="phero phero-img">
+  <div class="wrap phero-grid">
+    <div>
+      {{ m.crumbs([('Electric motors', 'motors.html')], root) }}
+      <h1>Industrial electric motors {{ site.motor_range }}</h1>
+      <p class="lede">Slip-ring, squirrel-cage, HT, LT and DC motors, often available from stock when a new motor has a long lead time. Tested before dispatch, with rewinding and overhaul through our workshop partners.</p>
+      <dl class="keyfacts keyfacts-row">
+        <div><dt>Power</dt><dd>Up to 3,000 HP</dd></div>
+        <div><dt>Voltage</dt><dd>415 V, 3.3 kV, 6.6 kV</dd></div>
+        <div><dt>Types</dt><dd>Slip ring, SQIM, HT, LT, DC</dd></div>
+      </dl>
+    </div>
+    <figure class="hero-ph">{{ m.photo('d-mech-motor-repair', sizes='(max-width:860px) 100vw, 560px', eager=true) }}</figure>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="mb0">Browse electric motors</h2><a class="link" href="stock.html?type=motor">Motors in stock</a></div>
+    <div class="cats cats-3">{% for s in mega[1][2] %}{{ m.cat_card(cats[s], root) }}{% endfor %}
+      <a class="cat" href="{{ m.wa_link('Hello HOPE, I need a special / custom motor. Duty: ___ HP/kW: ___ Voltage: ___ Speed: ___ Mounting: ___') }}" rel="noopener">
+        <span class="cat-img">{{ m.photo('d-worker-machining', sizes='(max-width:560px) 50vw, 280px', alt='') }}</span>
+        <span class="cat-body"><span class="cat-title">Custom motors</span><span class="cat-text">Any voltage, any speed, special enclosures and mountings, built to your duty.</span><span class="cat-count">Ask on WhatsApp</span></span>
+      </a>
+    </div>
+    <p class="small mt2">Also vibrator motors, and control gear: rotor resistance and liquid rotor starters, soft starters and VFDs.</p>
+  </div>
+</section>
+
+<section class="sec sec-white">
+  <div class="wrap split">
+    <div>
+      <h2>Slip-ring motor range</h2>
+      <p>Typical specifications we supply. Tell us your duty and we match a motor from stock or source one.</p>
+      <h3 class="mt3">Where they work best</h3>
+      <ul class="ticks">
+        <li>EOT and gantry cranes, hoists</li>
+        <li>Stone and coal crushers</li>
+        <li>Ball, roller and hammer mills; rolling mills</li>
+        <li>Heavy belt conveyors and large reciprocating compressors</li>
+      </ul>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <tbody>
+          <tr><th scope="row">Power</th><td>5 HP to 1,500 HP (larger on request)</td></tr>
+          <tr><th scope="row">Voltage</th><td>415 V, 3.3 kV, 6.6 kV</td></tr>
+          <tr><th scope="row">Frequency</th><td>50 Hz / 60 Hz</td></tr>
+          <tr><th scope="row">Speed</th><td>500, 750, 1,000, 1,500 rpm</td></tr>
+          <tr><th scope="row">Starting torque</th><td>200% – 300% of full-load torque</td></tr>
+          <tr><th scope="row">Starting current</th><td>1.5 – 2.5 × full-load current</td></tr>
+          <tr><th scope="row">Enclosure</th><td>TEFC, ODP, WP-II</td></tr>
+          <tr><th scope="row">Insulation</th><td>Class F / H</td></tr>
+          <tr><th scope="row">Protection</th><td>IP23, IP55, IP65</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2>How a used motor is checked</h2>
+    <div class="duo mt2">
+      <figure>{{ m.photo('p-m-induction-4', sizes='(max-width:700px) 100vw, 560px') }}</figure>
+      <figure>{{ m.photo('p-m-ht-b-1', sizes='(max-width:700px) 100vw, 560px') }}</figure>
+    </div>
+    <ol class="steps steps-4 mt2">
+      <li><h3>Nameplate and history</h3><p>Rating, frame, poles and any rewinding recorded.</p></li>
+      <li><h3>Insulation test</h3><p>Insulation resistance (and polarisation index on HT motors) measured.</p></li>
+      <li><h3>Bearings and rotor</h3><p>Bearings, slip rings and brush gear inspected or replaced.</p></li>
+      <li><h3>No-load run</h3><p>Run on no load with current and vibration noted on the test sheet.</p></li>
+    </ol>
+    <h2 class="mt3">More from the motor yard</h2>
+    <p>Vibrator motors, flameproof and foot-mounted LT motors, and pairs of identical motors for twin drives.</p>
+    <div class="gallery g-4 mt2">
+      <figure>{{ m.photo('p-m-vibrator-3', sizes='(max-width:600px) 50vw, 300px', alt='Vibrator motor') }}<figcaption>Vibrator motors</figcaption></figure>
+      <figure>{{ m.photo('p-m-hindustan-1', sizes='(max-width:600px) 50vw, 300px', alt='New foot-mounted LT induction motor') }}<figcaption>New LT motors</figcaption></figure>
+      <figure>{{ m.photo('p-m-used-6', sizes='(max-width:600px) 50vw, 300px', alt='Matched pair of blue induction motors') }}<figcaption>Matched pairs</figcaption></figure>
+      <figure>{{ m.photo('p-m-induction-1', sizes='(max-width:600px) 50vw, 300px', alt='Row of used induction motors') }}<figcaption>Small LT motors</figcaption></figure>
+      <figure>{{ m.photo('p-m-vibrator-1', sizes='(max-width:600px) 50vw, 300px', alt='Vibrator motor, side view') }}</figure>
+      <figure>{{ m.photo('p-m-hindustan-2', sizes='(max-width:600px) 50vw, 300px', alt='LT induction motor') }}</figure>
+      <figure>{{ m.photo('p-m-vibrator-2', sizes='(max-width:600px) 50vw, 300px', alt='Vibrator motor with eccentric weights') }}</figure>
+      <figure>{{ m.photo('p-m-used-3', sizes='(max-width:600px) 50vw, 300px', alt='Used induction motor') }}</figure>
+    </div>
+    <div class="actions mt3"><a class="btn btn-red" href="stock.html?type=motor">See motors in stock</a><a class="btn btn-wa" href="{{ m.wa_link('Hello HOPE, I need a motor. HP/kW: ___ Voltage: ___ RPM: ___ Type: ___') }}" rel="noopener">{{ m.icon('wa') }}Send motor details</a></div>
+  </div>
+</section>
+{% endblock %}

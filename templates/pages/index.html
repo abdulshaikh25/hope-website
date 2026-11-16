@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Gensets and motors, tested in our yard before they reach yours</h1>
+      <p class="lede">House of Power Equipments buys, refurbishes, sells and rents diesel generator sets from {{ site.genset_range }} and industrial motors {{ site.motor_range }}. Every used machine gets a full-load trial at Darukhana and leaves with a written warranty.</p>
+      <div class="actions">
+        <a class="btn btn-red" href="stock.html">See machines in stock</a>
+        <a class="btn btn-wa" href="{{ m.wa_link('Hello HOPE, I need a genset/motor. Size: ___  Site: ___') }}" rel="noopener">{{ m.icon('wa') }}WhatsApp your requirement</a>
+      </div>
+      <p class="small mt2">{{ site.reply_promise }}</p>
+    </div>
+    <div class="hero-visual">
+    <figure class="hero-ph">{{ m.photo('p-g-0380-cu-1', sizes='(max-width:900px) 100vw, 600px', eager=true, alt='Cummins 380 kVA silent generator set in the HOPE yard at Darukhana') }}</figure>
+    <div class="plate plate-float" role="group" aria-label="HOPE at a glance">
+      <div class="plate-head"><p class="plate-title">House of Power Equipments</p><span class="plate-ref">Mumbai 400010</span></div>
+      <dl class="plate-grid">
+        <div><dt>Established</dt><dd>{{ site.est }}</dd></div>
+        <div><dt>Gensets</dt><dd>5–2,000+ kVA</dd></div>
+        <div><dt>Motors</dt><dd>Up to 3,000 HP</dd></div>
+        <div><dt>Test</dt><dd>Full-load trial</dd></div>
+        <div><dt>Warranty</dt><dd>Written</dd></div>
+        <div><dt>Justdial</dt><dd>{{ site.justdial_rating }} / 5</dd></div>
+      </dl>
+      <div class="plate-foot"><span>Darukhana, Mazagaon</span><span>GSTIN {{ site.gstin }}</span></div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="finder" role="search">
+    <form action="stock.html" method="get">
+      <div><label for="f-type">I'm looking for</label>
+        <select id="f-type" name="type"><option value="">Any machine</option><option value="genset">Diesel generator set</option><option value="motor">Electric motor</option></select></div>
+      <div><label for="f-size">Size</label>
+        <select id="f-size" name="size"><option value="">Any size</option><option value="0-100">Up to 100 kVA / HP</option><option value="100-300">100 – 300</option><option value="300-750">300 – 750</option><option value="750-99999">Above 750</option></select></div>
+      <div><label for="f-cond">Condition</label>
+        <select id="f-cond" name="grade"><option value="">Any</option><option value="A">Refurbished and tested (Grade A)</option><option value="B">Running, as inspected (Grade B)</option></select></div>
+      <button class="btn btn-red" type="submit">Show matching stock</button>
+    </form>
+  </div>
+</div>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h2 class="mb0">In the yard now</h2></div>
+      <a class="link" href="stock.html">All {{ units|length }} machines in stock</a>
+    </div>
+    <div class="units">
+      {% for u in featured %}{{ m.unit_card(u, root) }}{% endfor %}
+    </div>
+    <p class="small mt2">Stock changes every week. Listings last checked {{ site.updated }}.</p>
+  </div>
+</section>
+
+<section class="sec-tight sec-white">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="mb0">Browse by product</h2><a class="link" href="gensets.html">All products</a></div>
+    <div class="cats">{% for s in home_cats %}{{ m.cat_card(cats[s], root) }}{% endfor %}</div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2>What we do</h2>
+    <p class="lede">One yard for buying, renting, keeping legal and keeping running.</p>
+    <div class="rows rows-ph mt2">
+      <a class="row" href="stock.html"><span class="row-ph">{{ m.photo('p-g-0320-cu-1', sizes='160px', alt='') }}</span><h3>Buy used</h3><p>Refurbished gensets and motors with test report and written warranty, usually 40–60% below new.</p><span class="go">See stock</span></a>
+      <a class="row" href="gensets.html"><span class="row-ph">{{ m.photo('p-g-0100-al-1', sizes='160px', alt='') }}</span><h3>Buy new</h3><p>New CPCB IV+ compliant gensets from leading makers, with installation.</p><span class="go">New gensets</span></a>
+      <a class="row" href="rental.html"><span class="row-ph">{{ m.photo('d-construction-night', sizes='160px', alt='') }}</span><h3>Rent</h3><p>Gensets on monthly hire for sites, factories, events and shoots, with operator if needed.</p><span class="go">Rental terms</span></a>
+      <a class="row" href="recd-compliance.html"><span class="row-ph">{{ m.photo('d-eng-genset-panel', sizes='160px', alt='') }}</span><h3>Get compliant</h3><p>Emission control (RECD) fitting, conversion or a compliant replacement for Maharashtra rules.</p><span class="go">RECD compliance</span></a>
+      <a class="row" href="service-amc.html"><span class="row-ph">{{ m.photo('d-mech-motor-repair', sizes='160px', alt='') }}</span><h3>Keep running</h3><p>Overhaul, repairs, motor rewinding through partners, and yearly maintenance contracts.</p><span class="go">Service and AMC</span></a>
+      <a class="row" href="sell.html"><span class="row-ph">{{ m.photo('d-truck-india', sizes='160px', alt='') }}</span><h3>Sell to us</h3><p>Replacing an old genset or motor? We inspect, make an offer and remove it.</p><span class="go">Get an offer</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="notice" aria-labelledby="recd-h">
+  <div class="wrap">
+    <div>
+      <h2 id="recd-h">Running a genset of 61 kW or more in Maharashtra?</h2>
+      <p>MPCB now requires in-use diesel gensets of this size to be fitted with a certified emission control device (RECD), converted, or replaced. We survey your set and handle the fitting and paperwork.</p>
+    </div>
+    <a class="btn btn-light" href="recd-compliance.html">Check what your set needs</a>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="split split-7-5">
+      <div>
+        <h2>How every used machine is prepared</h2>
+        <p class="lede">The same five steps for every genset and motor before it is listed.</p>
+      </div>
+      <p class="mt2"><a class="link" href="quality.html">Read our test and warranty policy</a></p>
+    </div>
+    <div class="duo mt2">
+      <figure>{{ m.photo('d-engineer-grinder-india', sizes='(max-width:700px) 100vw, 560px') }}</figure>
+      <figure>{{ m.photo('p-g-0380-cu-3', sizes='(max-width:700px) 100vw, 560px', alt='Stamford alternator rating plate recorded during inspection') }}<figcaption>Rating plates and serial numbers go on the test report.</figcaption></figure>
+    </div>
+    <ol class="steps mt3">
+      <li><h3>Inspect</h3><p>Engine, alternator, controls and canopy checked. Hours and serial numbers recorded.</p></li>
+      <li><h3>Strip and clean</h3><p>Opened up, cleaned, and wear parts measured.</p></li>
+      <li><h3>Replace</h3><p>Worn parts, filters, oil and coolant replaced.</p></li>
+      <li><h3>Load test</h3><p>Full-load trial at our yard. You are welcome to watch.</p></li>
+      <li><h3>Certify</h3><p>Signed test report and written warranty card with the machine.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec sec-ink">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="mb0">Where our machines work</h2><a class="link link-light" href="industries.html">All industries</a></div>
+    <div class="inds">
+      {% for key, label, ph in home_inds %}<a class="ind" href="industries.html#{{ key }}">{{ m.photo(ph, sizes='(max-width:700px) 50vw, 380px', alt='') }}<span>{{ label }}</span></a>{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-white">
+  <div class="wrap split">
+    <figure class="ph-tall">{{ m.photo('p-dispatch-1', sizes='(max-width:860px) 100vw, 560px') }}<figcaption>A 15 kVA KOEL silent set leaving our Darukhana yard.</figcaption></figure>
+    <div>
+      <h2>Why buyers come back</h2>
+      <div class="facts facts-2 mt2">
+        <div class="fact"><strong>Since {{ site.est }}</strong><span>A Delhiwala family business in Darukhana, Mumbai's power-equipment market.</span></div>
+        <div class="fact"><strong>{{ site.justdial_rating }} on Justdial</strong><span>From {{ site.justdial_count }}+ customer ratings. <a href="{{ site.justdial }}" rel="noopener">Read the reviews</a></span></div>
+        <div class="fact"><strong>IndiaMART TrustSEAL</strong><span>Verified seller profile. <a href="{{ site.indiamart }}" rel="noopener">View profile</a></span></div>
+        <div class="fact"><strong>Pan-India delivery</strong><span>Sugar mills, factories, ships and sites across India and abroad.</span></div>
+        <div class="fact"><strong>See before you buy</strong><span>Watch your machine run on load before you pay.</span></div>
+        <div class="fact"><strong>GST invoice</strong><span>Every sale billed by {{ site.name }}.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-tight">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="mb0">Inside our yard</h2><a class="link" href="about.html#visit">Visit the yard</a></div>
+    <div class="gallery g-6">
+      {% for g in ['p-yard-open-2','p-g-0062-al-3','p-m-induction-4','p-portable-2','p-g-0250-ko-1','p-yard-open-1'] %}<figure>{{ m.photo(g, sizes='(max-width:700px) 50vw, 380px') }}</figure>{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head"><div><h2 class="mb0">Brands we stock and service</h2><p class="lede mt1">Pick a make to see what is in the yard today.</p></div><a class="link" href="gensets.html#brands">Buying new? Ask for any make</a></div>
+    {{ m.brand_wall(root, brand_wall, brand_others) }}
+  </div>
+</section>
+
+<section class="sec sec-steel" id="quote">
+  <div class="wrap split">
+    <div>
+      <h2>Tell us the size and the site</h2>
+      <p class="lede">We'll reply with matching machines from the yard, photos, test report and price.</p>
+      <ul class="ticks">
+        <li>{{ site.reply_promise }}</li>
+        <li>Visit the yard to see your machine on load before you pay</li>
+        <li>Transport, installation and commissioning arranged</li>
+      </ul>
+      <p><strong>Visit:</strong> {{ site.street }}, {{ site.city }} {{ site.pin }}. <a href="{{ site.maps }}" rel="noopener">Get directions</a></p>
+    </div>
+    {{ m.quote_form(root, heading='Your requirement') }}
+  </div>
+</section>
+{% endblock %}
+{% block cta %}{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="phero phero-img">
+  <div class="wrap phero-grid">
+    <div>
+      {{ m.crumbs([(group_label, group_href), (c.short, c.url)] if group_href else [(c.short, c.url)], root) }}
+      <h1>{{ c.h1 }}</h1>
+      <p class="lede">{{ c.lede }}</p>
+      <dl class="keyfacts keyfacts-row">
+        {% for k, v in c.keyfacts %}<div><dt>{{ k }}</dt><dd>{{ v }}</dd></div>{% endfor %}
+      </dl>
+      <div class="actions mt2">
+        {% if c.units %}<a class="btn btn-red" href="#in-stock">See {{ c.units|length }} in stock</a>{% endif %}
+        <a class="btn btn-wa" href="{{ m.wa_link('Hello HOPE, I need: ' ~ c.short ~ '. Size: ___  Site: ___') }}" rel="noopener">{{ m.icon('wa') }}Ask on WhatsApp</a>
+      </div>
+    </div>
+    <figure class="hero-ph">{{ m.photo(c.hero, sizes='(max-width:860px) 100vw, 560px', eager=true) }}</figure>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split split-7-5">
+    <div class="prose">
+      {% for para in c.body %}<p{% if loop.first %} class="lede"{% endif %}>{{ para }}</p>{% endfor %}
+      <h2 class="mt3">What we supply</h2>
+      <ul class="ticks">{% for s in c.supply %}<li>{{ s }}</li>{% endfor %}</ul>
+    </div>
+    <div>
+      <div class="panel">
+        <h2 class="mt0" style="font-size:28px">Where it is used</h2>
+        <ul class="ticks mb0">{% for s in c.uses %}<li>{{ s }}</li>{% endfor %}</ul>
+      </div>
+      {% if group == 'gensets' or group == 'motors' %}
+      <p class="small mt2">Every used machine is inspected and tested before it is listed. <a href="{{ root }}quality.html">How we test and warranty</a>.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% if c.gallery %}
+<section class="sec-tight sec-white">
+  <div class="wrap">
+    <h2>{{ 'From our yard' if c.gallery_own else 'In use' }}</h2>
+    {%- set n = c.gallery|length -%}<div class="gallery g-{{ n if n <= 5 else (3 if n % 3 == 0 else 4) }}">
+      {% for g in c.gallery %}<figure>{{ m.photo(g, sizes='(max-width:700px) 50vw, 300px') }}</figure>{% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if c.units %}
+<section class="sec" id="in-stock">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="mb0">{{ c.short }} in stock</h2><a class="link" href="{{ root }}stock.html">All stock</a></div>
+    <div class="units">{% for u in c.units|sort(attribute='rating') %}{{ m.unit_card(u, root) }}{% endfor %}</div>
+  </div>
+</section>
+{% else %}
+<section class="sec">
+  <div class="wrap split">
+    <div><h2>Sourced to your requirement</h2><p class="lede">Send the rating, site and timeline. We come back with options, photos and a price, usually the same day.</p></div>
+    <div class="actions"><a class="btn btn-wa" href="{{ m.wa_link('Hello HOPE, I need: ' ~ c.short ~ '. Details: ') }}" rel="noopener">{{ m.icon('wa') }}Send your requirement</a><a class="btn btn-line" href="{{ root }}contact.html#quote">Request a quote</a></div>
+  </div>
+</section>
+{% endif %}
+
+{% if c.faq %}
+<section class="sec sec-white">
+  <div class="wrap split">
+    <div><h2>Questions buyers ask</h2></div>
+    <div class="faq">{% for q, a in c.faq %}<details><summary>{{ q }}</summary><p>{{ a }}</p></details>{% endfor %}</div>
+  </div>
+</section>
+{% endif %}
+
+<section class="sec-tight">
+  <div class="wrap">
+    <h2>Related products</h2>
+    <div class="cats">{% for s in related %}{{ m.cat_card(cats[s], root) }}{% endfor %}</div>
+  </div>
+</section>
+{% endblock %}

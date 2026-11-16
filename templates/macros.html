@@ -1,0 +1,150 @@
+{% macro icon(name) -%}
+{%- if name == 'phone' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+{%- elif name == 'wa' -%}<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+{%- elif name == 'quote' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>
+{%- elif name == 'chev' -%}<svg class="chev" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+{%- elif name == 'menu' -%}<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+{%- elif name == 'pin' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+{%- elif name == 'mail' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+{%- elif name == 'clock' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+{%- endif -%}
+{%- endmacro %}
+
+{% macro wa_link(text) -%}https://wa.me/{{ site.wa }}?text={{ text|urlencode }}{%- endmacro %}
+
+{% macro photo(key, cls='', sizes='100vw', eager=false, alt=none) -%}
+{%- set p = ph(key) -%}
+<img{% if cls %} class="{{ cls }}"{% endif %} src="{{ root }}static/photos/{{ p.small }}" srcset="{{ root }}static/photos/{{ p.small }} {{ p.sw }}w, {{ root }}static/photos/{{ p.mid }} {{ p.mw }}w, {{ root }}static/photos/{{ p.large }} {{ p.lw }}w" sizes="{{ sizes }}" width="{{ p.w }}" height="{{ p.h }}" alt="{{ alt if alt is not none else p.alt }}"{% if eager %} fetchpriority="high"{% else %} loading="lazy"{% endif %} decoding="async">
+{%- endmacro %}
+
+{% macro cat_card(c, root) -%}
+<a class="cat" href="{{ root }}{{ c.url }}">
+  <span class="cat-img">{{ photo(c.hero, sizes='(max-width:700px) 100vw, 360px', alt='') }}</span>
+  <span class="cat-body"><span class="cat-title">{{ c.short }}</span><span class="cat-text">{{ c.lede.split('.')[0] }}.</span>{% if c.units %}<span class="cat-count">{{ c.units|length }} in stock</span>{% endif %}</span>
+</a>
+{%- endmacro %}
+
+{% macro unit_card(u, root) -%}
+<article class="unit" data-type="{{ u.type }}" data-brand="{{ u.brand }}" data-rating="{{ u.rating }}" data-grade="{{ u.grade or 'X' }}" data-price="{{ u.price or 0 }}" data-text="{{ (u.title ~ ' ' ~ u.id ~ ' ' ~ u.note)|lower }}">
+  <div class="unit-fig">
+    {{ photo(u.photo, sizes='(max-width:480px) 100vw, 260px', alt=u.title) }}
+    <span class="tag {{ u.grade_cls }}">{{ u.grade_label }}</span>
+  </div>
+  <div class="unit-body">
+    <span class="unit-id">Stock {{ u.id }}</span>
+    <h3><a href="{{ root }}{{ u.url }}">{{ u.title }}</a></h3>
+    <dl class="specs">
+      <div><dt>Rating</dt><dd>{{ u.rating_txt }}</dd></div>
+      <div><dt>Year</dt><dd>{{ u.year_txt }}</dd></div>
+      {% if u.type == 'genset' %}<div><dt>Hours run</dt><dd>{{ u.hours }}</dd></div>{% else %}<div><dt>{{ u.extra[0][0] }}</dt><dd>{{ u.extra[0][1] }}</dd></div>{% endif %}
+      <div><dt>Enclosure</dt><dd>{{ u.enclosure }}</dd></div>
+    </dl>
+    <p class="unit-note">{{ u.note }}</p>
+  </div>
+  <div class="unit-side">
+    <div class="price">{% if u.price_txt %}{{ u.price_txt }}<small>Asking price + GST</small>{% else %}Price on request<small>Reply within 15 minutes</small>{% endif %}</div>
+    <a class="btn btn-wa btn-sm" href="{{ wa_link(u.wa_text) }}" rel="noopener">{{ icon('wa') }}Ask on WhatsApp</a>
+    <a class="btn btn-line btn-sm" href="{{ root }}{{ u.url }}">Full details</a>
+  </div>
+</article>
+{%- endmacro %}
+
+{% macro quote_form(root, need='', unit='', heading='Tell us what you need', level=3) -%}
+<form class="quote-form panel" data-quote novalidate>
+  <h{{ level }} class="form-h mt0">{{ heading }}</h{{ level }}>
+  <p class="small">Fill in what you know. Pressing <strong>Send on WhatsApp</strong> opens WhatsApp with your details already typed in, so you can check them and send.</p>
+  <fieldset class="choice">
+    <legend class="vh">What do you need?</legend>
+    {% for v, l in [('buy-used','Buy used'),('buy-new','Buy new'),('rent','Rent'),('recd','RECD / compliance'),('service','Service or AMC'),('sell','Sell to HOPE'),('export','Export')] %}
+    <label><input type="radio" name="need" value="{{ l }}" {% if need == v %}checked{% endif %}><span>{{ l }}</span></label>
+    {% endfor %}
+  </fieldset>
+  <div class="form-grid">
+    <div class="field"><label for="q-name">Your name <span class="req">*</span></label><input id="q-name" name="name" autocomplete="name" required></div>
+    <div class="field"><label for="q-phone">Mobile number <span class="req">*</span></label><input id="q-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required></div>
+    <div class="field"><label for="q-company">Company</label><input id="q-company" name="company" autocomplete="organization"></div>
+    <div class="field"><label for="q-city">City / site location</label><input id="q-city" name="city" autocomplete="address-level2"></div>
+    <div class="field"><label for="q-equip">Equipment</label>
+      <select id="q-equip" name="equipment"><option value="">Choose</option><option>Diesel generator set</option><option>Electric motor</option><option>Transformer</option><option>Pump / compressor / other</option></select></div>
+    <div class="field"><label for="q-size">Size</label><input id="q-size" name="size" placeholder="e.g. 125 kVA or 200 HP"></div>
+    <div class="field"><label for="q-when">When do you need it?</label>
+      <select id="q-when" name="when"><option value="">Choose</option><option>Urgent – this week</option><option>Within a month</option><option>1–3 months</option><option>Just planning</option></select></div>
+    <div class="field"><label for="q-unit">Stock number (if any)</label><input id="q-unit" name="unit" value="{{ unit }}" placeholder="e.g. G-0380-CU"></div>
+    <div class="field full"><label for="q-msg">Anything else</label><textarea id="q-msg" name="message" placeholder="Site details, open or silent set, voltage, duty hours…"></textarea></div>
+  </div>
+  <div class="actions">
+    <button class="btn btn-wa" type="submit" data-send="wa">{{ icon('wa') }}Send on WhatsApp</button>
+    <button class="btn btn-line" type="submit" data-send="email">Send by email instead</button>
+  </div>
+  <p class="form-status" role="status" aria-live="polite"></p>
+  <p class="form-note">Prefer to talk? Call <a href="tel:{{ site.phone_sales_tel }}">{{ site.phone_sales }}</a>, {{ site.hours }}. We use your details only to reply to this enquiry (<a href="{{ root }}privacy.html">privacy</a>).</p>
+</form>
+{%- endmacro %}
+
+{% macro crumbs(items, root) -%}
+<nav class="crumbs" aria-label="Breadcrumb"><ol>
+  <li><a href="{{ root }}index.html">Home</a></li>
+  {% for label, href in items %}{% if loop.last %}<li aria-current="page">{{ label }}</li>{% else %}<li><a href="{{ root }}{{ href }}">{{ label }}</a></li>{% endif %}{% endfor %}
+</ol></nav>
+{%- endmacro %}
+
+{% macro cta_band(title, text, root) -%}
+<section class="cta-band" aria-label="Contact HOPE">
+  <div class="cta-bg" aria-hidden="true">{{ photo('p-yard-open-1', sizes='100vw', alt='') }}</div>
+  <div class="wrap">
+    <div><h2>{{ title }}</h2><p>{{ text }}</p></div>
+    <div class="actions">
+      <a class="btn btn-light" href="tel:{{ site.phone_sales_tel }}">{{ icon('phone') }}{{ site.phone_sales }}</a>
+      <a class="btn btn-wa" href="{{ wa_link('Hello HOPE, I have an enquiry.') }}" rel="noopener">{{ icon('wa') }}WhatsApp us</a>
+    </div>
+  </div>
+</section>
+{%- endmacro %}
+
+
+{% macro brand_wall(root, wall, others) -%}
+<div class="bwall">
+  {% for b in wall %}<a class="bw" href="{{ root }}stock.html?brand={{ b.name|urlencode }}">
+    <span class="bw-ph">{{ photo(b.photo, sizes='(max-width:600px) 50vw, 290px', alt=b.alt) }}</span>
+    <span class="bw-body"><span class="bw-name">{{ b.name }}</span><span class="bw-meta">{{ b.range }}</span><span class="bw-count">{{ b.count }} in stock</span></span>
+  </a>{% endfor %}
+</div>
+<div class="bw-also">
+  <p class="bw-also-h">Also supplied and serviced</p>
+  <ul class="bw-list">{% for b in others %}<li>{% if b.count %}<a href="{{ root }}stock.html?brand={{ b.name|urlencode }}">{{ b.name }}</a>{% else %}{{ b.name }}{% endif %}</li>{% endfor %}</ul>
+</div>
+<p class="small mt2 mb0">Brand names belong to their owners. HOPE is an independent seller and service house, not a manufacturer or authorised dealer. Photos show machines in our yard.</p>
+{%- endmacro %}
+
+{# HOPE badge logo, drawn in code. Each part has a class so the intro can animate it. #}
+{% macro logo_svg(year, cls='') -%}
+<svg class="hope-logo {{ cls }}" viewBox="0 0 400 400" focusable="false" aria-hidden="true">
+  <defs>
+    <radialGradient id="lgBand" cx="50%" cy="42%" r="60%"><stop offset="0" stop-color="#34383D"/><stop offset=".7" stop-color="#1A1C1F"/><stop offset="1" stop-color="#0E0F11"/></radialGradient>
+    <linearGradient id="lgRim" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#B9BFC4"/><stop offset=".7" stop-color="#EEF0F2"/><stop offset="1" stop-color="#9AA2A9"/></linearGradient>
+    <radialGradient id="lgCore" cx="200" cy="185" r="150" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#F3313A"/><stop offset=".55" stop-color="#D8171F"/><stop offset="1" stop-color="#A20F16"/></radialGradient>
+    <radialGradient id="lgFlash" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".4" stop-color="#FFD4D4" stop-opacity=".7"/><stop offset="1" stop-color="#FF6B6B" stop-opacity="0"/></radialGradient>
+    <linearGradient id="lgSheen" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <clipPath id="lgClip"><circle cx="200" cy="200" r="197"/></clipPath>
+    <path id="lgArcTop" d="M56.2 257.1A155 155 0 1 1 343.8 257.1"/>
+    <path id="lgArcBot" d="M71.3 328.7A182 182 0 0 0 328.7 328.7"/>
+  </defs>
+  <g class="lg-band"><circle cx="200" cy="200" r="197" fill="#0B0C0E"/><circle cx="200" cy="200" r="192" fill="url(#lgBand)"/></g>
+  <circle class="lg-rim" cx="200" cy="200" r="189" fill="none" stroke="url(#lgRim)" stroke-width="5"/>
+  <text class="lg-top" font-family="Barlow, sans-serif" font-weight="700" font-size="40" fill="#fff" letter-spacing="2.2"><textPath href="#lgArcTop" startOffset="50%" text-anchor="middle">{% for ch in 'HOUSE OF POWER EQUIPMENTS' %}<tspan>{{ ch }}</tspan>{% endfor %}</textPath></text>
+  <text class="lg-bot" font-family="Barlow, sans-serif" font-weight="700" font-size="26" fill="#fff" letter-spacing=".3"><textPath href="#lgArcBot" startOffset="50%" text-anchor="middle">Power Solutions - {{ year }}</textPath></text>
+  <g class="lg-dots" fill="#C9CED2"><circle cx="60.3" cy="291.5" r="4.5"/><circle cx="339.7" cy="291.5" r="4.5"/></g>
+  <g class="lg-core">
+    <circle cx="200" cy="200" r="138" fill="#0B0C0E"/>
+    <circle cx="200" cy="200" r="134" fill="url(#lgCore)"/>
+    <circle cx="200" cy="200" r="134" fill="none" stroke="#000" stroke-opacity=".35" stroke-width="3"/>
+  </g>
+  <circle class="lg-flash" cx="200" cy="200" r="134" fill="url(#lgFlash)" opacity="0"/>
+  <path class="lg-banner" d="M141 124H292L271 190H120Z" fill="#fff"/>
+  <g class="lg-embg"><ellipse class="lg-emb" cx="193" cy="156" rx="31" ry="25" transform="rotate(-8 193 156)" fill="url(#lgCore)"/></g>
+  <g class="lg-boltg"><path class="lg-bolt" d="M-12-11H13L11-5.5-2 5.5H10L8 11H-14L-12 5.5 1-5.5H-10Z" transform="translate(193 156) scale(1.3) skewX(-14)" fill="#fff"/></g>
+  <g class="lg-hopeg"><text class="lg-hope" x="0" y="0" transform="translate(174 268) skewX(-12)" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="98" fill="#fff" stroke="#fff" stroke-width="3.5" stroke-linejoin="miter" text-anchor="middle" textLength="178" lengthAdjust="spacingAndGlyphs"><tspan>H</tspan><tspan>O</tspan><tspan>P</tspan><tspan>E</tspan></text></g>
+  <circle class="lg-spark" r="0" fill="url(#lgFlash)"/>
+  <g clip-path="url(#lgClip)"><rect class="lg-sheen" x="-160" y="-20" width="120" height="440" fill="url(#lgSheen)" transform="skewX(-18)" opacity="0"/></g>
+</svg>
+{%- endmacro %}

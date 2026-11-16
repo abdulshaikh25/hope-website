@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="phero phero-img">
+  <div class="wrap phero-grid">
+    <div>
+      {{ m.crumbs([('Genset rental', 'rental.html')], root) }}
+      <h1>Genset rental, by the month</h1>
+      <p class="lede">Diesel generator sets on hire for construction sites, factories during breakdowns, events and film shoots. Delivered, connected and, if you want, run by our operator.</p>
+      <dl class="keyfacts keyfacts-row">
+        <div><dt>Hire period</dt><dd>Monthly, one 8-hour shift</dd></div>
+        <div><dt>Operator</dt><dd>₹5,000 per month, optional</dd></div>
+        <div><dt>Notice to end hire</dt><dd>7 days</dd></div>
+      </dl>
+    </div>
+    <figure class="hero-ph">{{ m.photo('d-construction-night', sizes='(max-width:860px) 100vw, 560px', eager=true) }}</figure>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2>How hire works</h2>
+    <ol class="steps mt2">
+      <li><h3>Tell us the load</h3><p>Size of load, site, start date and how many hours a day.</p></li>
+      <li><h3>We quote</h3><p>A matching set from our yard with monthly rent and delivery cost.</p></li>
+      <li><h3>Delivery</h3><p>Set delivered, placed and connected at your site.</p></li>
+      <li><h3>Running</h3><p>Our operator can run and look after the set; we handle breakdowns.</p></li>
+      <li><h3>Return</h3><p>Give 7 days' notice and we collect the set.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec sec-white">
+  <div class="wrap split">
+    <div>
+      <h2>Hire terms</h2>
+      <p>Our standard terms, so there are no surprises. Larger or longer jobs are quoted separately.</p>
+      <figure class="split-ph">{{ m.photo('d-worker-site-hivis', sizes='(max-width:860px) 100vw, 540px') }}</figure>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <tbody>
+          <tr><th scope="row">Rent</th><td>Monthly, based on one 8-hour shift a day</td></tr>
+          <tr><th scope="row">Extra shifts</th><td>Charged per extra shift</td></tr>
+          <tr><th scope="row">Operator</th><td>Optional, ₹5,000 per month, plus ₹200 per extra shift</td></tr>
+          <tr><th scope="row">Diesel and lube oil</th><td>Supplied by the hirer (Servo 20W-40 or equivalent, changed every 240 hours)</td></tr>
+          <tr><th scope="row">Transport</th><td>Delivery and return paid by the hirer</td></tr>
+          <tr><th scope="row">Load</th><td>Up to 80% of the set's rating</td></tr>
+          <tr><th scope="row">Ending hire</th><td>7 days' written notice</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2>Who hires from us</h2>
+    <div class="inds inds-light mt2">
+      {% for label, ph in [('Construction sites','d-cranes-sunset'),('Factories','d-factory-line'),('Events and weddings','d-concert-stage'),('Film and ad shoots','d-film-set'),('Hospitals','d-hospital-building'),('Plant shutdowns','d-control-room')] %}<div class="ind">{{ m.photo(ph, sizes='(max-width:700px) 50vw, 380px', alt='') }}<span>{{ label }}</span></div>{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-steel" id="quote">
+  <div class="wrap split">
+    <div>
+      <h2>Ask for a hire quote</h2>
+      <p class="lede">Tell us the load, the site and the dates.</p>
+      <div class="faq mt2">
+        <details><summary>What size do I need?</summary><p>Add up the running load and allow for motors starting. Send us your equipment list and we size it for you. Our sets run at up to 80% of rating on hire.</p></details>
+        <details><summary>Can I hire for less than a month?</summary><p>Ask us. Short hires for events and shoots are quoted case by case.</p></details>
+        <details><summary>What if the set breaks down?</summary><p>Call our service line, {{ site.phone_support }}. We repair or replace the set.</p></details>
+      </div>
+    </div>
+    {{ m.quote_form(root, need='rent', heading='Hire enquiry') }}
+  </div>
+</section>
+{% endblock %}
+{% block cta %}{% endblock %}

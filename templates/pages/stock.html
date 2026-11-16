@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="phero">
+  <div class="wrap">
+    {{ m.crumbs([('Stock available now', 'stock.html')], root) }}
+    <div class="phero-grid">
+      <div>
+        <h1>Stock available now</h1>
+        <p class="lede mb0">Used and refurbished gensets and motors in our Darukhana yard. Each listing has its stock number — quote it on WhatsApp for photos, test report and the latest price.</p>
+      </div>
+      <dl class="keyfacts">
+        <div><dt>Machines listed</dt><dd>{{ units|length }}</dd></div>
+        <div><dt>Last checked</dt><dd>{{ site.updated }}</dd></div>
+        <div><dt>Standard warranty</dt><dd>{{ site.std_warranty }} on refurbished sets</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="sec-tight">
+  <div class="wrap">
+    <button class="btn btn-line filters-toggle" type="button" aria-expanded="false" aria-controls="filters">Filter machines</button>
+    <div class="stock-layout mt2">
+      <form class="filters" id="filters" aria-label="Filter stock">
+        <h2>Filter machines</h2>
+        <div class="field"><label for="s-q">Search</label><input id="s-q" name="q" type="search" placeholder="Brand, size or stock no."></div>
+        <fieldset><legend>Machine</legend>
+          <label class="check"><input type="checkbox" name="type" value="genset">Diesel generator sets</label>
+          <label class="check"><input type="checkbox" name="type" value="motor">Electric motors</label>
+        </fieldset>
+        <fieldset><legend>Size (kVA or HP)</legend>
+          <label class="check"><input type="radio" name="size" value="" checked>Any size</label>
+          <label class="check"><input type="radio" name="size" value="0-100">Up to 100</label>
+          <label class="check"><input type="radio" name="size" value="100-300">100 – 300</label>
+          <label class="check"><input type="radio" name="size" value="300-750">300 – 750</label>
+          <label class="check"><input type="radio" name="size" value="750-99999">Above 750</label>
+        </fieldset>
+        <fieldset><legend>Condition</legend>
+          <label class="check"><input type="checkbox" name="grade" value="A">Grade A – refurbished, tested</label>
+          <label class="check"><input type="checkbox" name="grade" value="B">Grade B – running, as inspected</label>
+          <label class="check"><input type="checkbox" name="grade" value="X">Condition on request</label>
+        </fieldset>
+        <fieldset><legend>Brand</legend>
+          {% for b in unit_brands %}<label class="check"><input type="checkbox" name="brand" value="{{ b }}">{{ b if b != 'Ask' else 'Make on request' }}</label>{% endfor %}
+        </fieldset>
+        <button class="btn btn-line btn-sm" type="reset">Clear filters</button>
+      </form>
+
+      <div>
+        <div class="results-bar">
+          <p class="mb0" id="count" role="status" aria-live="polite"><strong>{{ units|length }}</strong> machines</p>
+          <div><label class="vh" for="s-sort">Sort by</label>
+            <select id="s-sort" name="sort" form="filters"><option value="size-asc">Size: small to large</option><option value="size-desc">Size: large to small</option><option value="price-asc">Price: low to high</option></select></div>
+        </div>
+        <h2 class="vh">Machines in stock</h2>
+        <div class="units" id="results">
+          {% for u in units|sort(attribute='rating') %}{{ m.unit_card(u, root) }}{% endfor %}
+        </div>
+        <div class="empty mt2" id="empty" hidden>
+          <h2>Nothing in the yard matches that yet</h2>
+          <p>New machines arrive every week, and we can source most sizes. Send us the size and we'll tell you what's coming in.</p>
+          <a class="btn btn-wa" href="{{ m.wa_link('Hello HOPE, I am looking for: ') }}" rel="noopener">{{ m.icon('wa') }}Tell us what you need</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-white">
+  <div class="wrap split">
+    <div>
+      <h2>What the grades mean</h2>
+      <p>Every listing carries a grade so you know exactly what you are buying.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Grade</th><th scope="col">What it means</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Grade A</th><td>Refurbished, full-load tested at our yard, signed test report and written warranty.</td></tr>
+          <tr><th scope="row">Grade B</th><td>Running and inspected, sold as seen. We can overhaul it to Grade A on request.</td></tr>
+          <tr><th scope="row">Condition on request</th><td>Recently received. Ask for the inspection report before deciding.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ root }}static/js/stock.js" defer></script>{% endblock %}

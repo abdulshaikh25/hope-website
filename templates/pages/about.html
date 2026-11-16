@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="phero phero-img">
+  <div class="wrap phero-grid">
+    <div>
+      {{ m.crumbs([('About HOPE', 'about.html')], root) }}
+      <h1>A Darukhana power-equipment house since {{ site.est }}</h1>
+      <p class="lede">House of Power Equipments is a family business run by the Delhiwala family in Darukhana, Mazagaon — Mumbai's market for used generators and motors. We buy, refurbish, sell, rent and service power equipment for customers across India.</p>
+      <dl class="keyfacts keyfacts-row">
+        <div><dt>Established</dt><dd>{{ site.est }}</dd></div>
+        <div><dt>Firm</dt><dd>Partnership, Mumbai</dd></div>
+        <div><dt>GSTIN</dt><dd>{{ site.gstin }}</dd></div>
+      </dl>
+    </div>
+    <figure class="hero-ph">{{ m.photo('p-yard-open-2', sizes='(max-width:860px) 100vw, 560px', eager=true) }}</figure>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split">
+    <div>
+      <h2>What we believe</h2>
+      <p>A used machine is a good buy only if you know exactly what you are getting. So we test every machine on load, write down what we found, and stand behind it with a written warranty.</p>
+      <p>We would rather tell you a set is wrong for your site than sell it to you. Many of our customers have been buying from us for years, and most of our new customers come from their recommendations.</p>
+    </div>
+    <div class="plate plate-2" role="group" aria-label="Company details">
+      <div class="plate-head"><p class="plate-title">Company details</p><span class="plate-ref">HOPE</span></div>
+      <dl class="plate-grid">
+        <div><dt>Legal name</dt><dd>House of Power Equipments</dd></div>
+        <div><dt>Since</dt><dd>{{ site.est }}</dd></div>
+        <div><dt>GSTIN</dt><dd>{{ site.gstin }}</dd></div>
+        <div><dt>Yard</dt><dd>Darukhana, Mumbai</dd></div>
+        <div><dt>Gensets</dt><dd>5–2,000+ kVA</dd></div>
+        <div><dt>Motors</dt><dd>Up to 3,000 HP</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="sec-tight">
+  <div class="wrap duo">
+    <figure>{{ m.photo('p-dispatch-1', sizes='(max-width:700px) 100vw, 560px') }}<figcaption>A set leaving the yard. Many customers have bought from us for years, and send their friends.</figcaption></figure>
+    <figure>{{ m.photo('d-mumbai-sealink', sizes='(max-width:700px) 100vw, 560px') }}<figcaption>Based in Mumbai since {{ site.est }}, delivering across India and abroad.</figcaption></figure>
+  </div>
+</section>
+
+<section class="sec-tight sec-white">
+  <div class="wrap">
+    <h2>Inside our yard</h2>
+    <div class="gallery g-4">
+      {% for g in ['p-g-0200-ko-4','p-yard-open-4','p-yard-open-3','p-yard-open-5','p-g-0062-al-1','p-m-induction-4','p-portable-2','p-g-0380-cu-b-1'] %}<figure>{{ m.photo(g, sizes='(max-width:600px) 50vw, 300px') }}</figure>{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2>What customers can check</h2>
+    <div class="facts mt2">
+      <div class="fact"><strong>{{ site.justdial_rating }} on Justdial</strong><span>{{ site.justdial_count }}+ ratings. <a href="{{ site.justdial }}" rel="noopener">Read reviews</a></span></div>
+      <div class="fact"><strong>IndiaMART TrustSEAL</strong><span>Verified seller. <a href="{{ site.indiamart }}" rel="noopener">View profile</a></span></div>
+      <div class="fact"><strong>GST registered</strong><span>Verify GSTIN {{ site.gstin }} on the GST portal.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="visit">
+  <div class="wrap split">
+    <div>
+      <h2>Visit the yard</h2>
+      <p>{{ site.street }}, {{ site.landmark }}, {{ site.city }} {{ site.pin }}.</p>
+      <p>{{ site.hours }}. Call ahead and we'll have your machine ready to run.</p>
+      <div class="actions"><a class="btn btn-line" href="{{ site.maps }}" rel="noopener">Directions on Google Maps</a><a class="btn btn-wa" href="{{ m.wa_link('Hello HOPE, I would like to visit the yard on ___') }}" rel="noopener">{{ m.icon('wa') }}Book a visit</a></div>
+    </div>
+    <div>
+      <h2>Work with us</h2>
+      <p>We are growing our sales and service team. If you have experience in industrial sales, genset service or motor repair, send your details on WhatsApp or email <a href="mailto:{{ site.email }}?subject=Job%20application">{{ site.email }}</a>.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

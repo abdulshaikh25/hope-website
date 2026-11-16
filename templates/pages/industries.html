@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="phero phero-img">
+  <div class="wrap phero-grid">
+    <div>
+      {{ m.crumbs([('Industries we serve', 'industries.html')], root) }}
+      <h1>Industries we serve</h1>
+      <p class="lede">Our machines run in sugar mills in rural Maharashtra, factories in Gujarat and Telangana, on ships, and on sites across Mumbai.</p>
+      
+    </div>
+    <figure class="hero-ph">{{ m.photo('d-industrial-hall-crane', sizes='(max-width:860px) 100vw, 560px', eager=true) }}</figure>
+  </div>
+</section>
+<section class="sec">
+  <div class="wrap">
+    <div class="inds inds-light inds-lg">
+      {% for key, label, ph, text in industries %}<div class="ind" id="{{ key }}">{{ m.photo(ph, sizes='(max-width:700px) 100vw, 380px', alt='') }}<span>{{ label }}</span><p>{{ text }}</p></div>{% endfor %}
+    </div>
+  </div>
+</section>
+<section class="sec sec-white">
+  <div class="wrap">
+    <figure class="band mb0">{{ m.photo('d-sugarcane-cut', sizes='100vw', alt='Freshly cut sugarcane stacked in a field in Maharashtra') }}</figure>
+    <h2 class="mt3">Where our machines have gone</h2>
+    <p class="lede">Recent deliveries include Pune, Chakan, Thane, Bhiwandi, Vashi, Kalamboli, Satara, Kolhapur, Beed, Yavatmal, Baroda, Kutch, Valsad, Rajasthan, Telangana and Kolkata, as well as ships and buyers abroad.</p>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="phero phero-img">
+  <div class="wrap phero-grid">
+    <div>
+      {{ m.crumbs([('Transformers, pumps and more', 'other-equipment.html')], root) }}
+      <h1>Transformers, pumps and allied equipment</h1>
+      <p class="lede">Alongside gensets and motors we supply the equipment around them. Most items are sourced to order, used or new, so tell us the rating and we will come back with options.</p>
+      
+    </div>
+    <figure class="hero-ph">{{ m.photo('d-pumps-blue', sizes='(max-width:860px) 100vw, 560px', eager=true) }}</figure>
+  </div>
+</section>
+<section class="sec">
+  <div class="wrap">
+    <div class="cats">{% for s in ['power-transformers'] + mega[3][2] %}{{ m.cat_card(cats[s], root) }}{% endfor %}</div>
+    <div class="actions mt3"><a class="btn btn-wa" href="{{ m.wa_link('Hello HOPE, I need: (equipment) ___ rating ___') }}" rel="noopener">{{ m.icon('wa') }}Ask for an item</a><a class="btn btn-line" href="contact.html#quote">Request a quote</a></div>
+  </div>
+</section>
+{% endblock %}

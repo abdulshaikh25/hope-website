@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="phero phero-img">
+  <div class="wrap phero-grid">
+    <div>
+      {{ m.crumbs([('RECD and MPCB compliance', 'recd-compliance.html')], root) }}
+      <h1>Make your genset compliant with MPCB rules</h1>
+      <p class="lede">The Maharashtra Pollution Control Board requires in-use diesel gensets of 61 kW and above to cut smoke emissions — by fitting a certified Retrofit Emission Control Device (RECD), converting the set, or replacing it. We survey your set and handle the whole job.</p>
+      <dl class="keyfacts keyfacts-row">
+        <div><dt>Applies to</dt><dd>In-use gensets 61 kW and above</dd></div>
+        <div><dt>Circular</dt><dd>MPCB, 21 October 2026</dd></div>
+        <div><dt>Deadline</dt><dd>Short — check your consent</dd></div>
+      </dl>
+    </div>
+    <figure class="hero-ph">{{ m.photo('d-eng-genset-panel', sizes='(max-width:860px) 100vw, 560px', eager=true) }}</figure>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split">
+    <div>
+      <h2>Does this apply to me?</h2>
+      <p>Most likely, if all of these are true:</p>
+      <ul class="ticks">
+        <li>Your site is in Maharashtra</li>
+        <li>You run a diesel genset rated 61 kW (about 75 kVA) or more</li>
+        <li>The set is not a new CPCB IV+ model</li>
+        <li>Your site holds, or needs, MPCB consent to operate</li>
+      </ul>
+      <p class="small">Rules depend on your site and set. Read the circular on the <a href="https://mpcb.gov.in/en/circulars" rel="noopener">MPCB website</a> or send us your genset nameplate photo and we will tell you what applies.</p>
+    </div>
+    <div>
+      <h2>Your three options</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Option</th><th scope="col">When it fits</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Fit an RECD</th><td>The set is in good condition and you want to keep it. A certified device is fitted to the exhaust.</td></tr>
+            <tr><th scope="row">Convert</th><td>Dual-fuel or gas conversion, where gas supply is available.</td></tr>
+            <tr><th scope="row">Replace</th><td>The set is old or tired. We supply a compliant set and buy back the old one.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-white">
+  <div class="wrap">
+    <h2>How we handle it</h2>
+    <div class="duo mt2">
+      <figure>{{ m.photo('d-electrician-panel', sizes='(max-width:700px) 100vw, 560px') }}</figure>
+      <figure>{{ m.photo('p-g-0200-ko-6', sizes='(max-width:700px) 100vw, 560px', alt='Genset control panel') }}</figure>
+    </div>
+    <ol class="steps mt2">
+      <li><h3>Survey</h3><p>We inspect your set, note rating, hours and exhaust layout.</p></li>
+      <li><h3>Recommend</h3><p>RECD, conversion or replacement — with a written quote for each.</p></li>
+      <li><h3>Fit</h3><p>Certified, type-approved device fitted and the set tested.</p></li>
+      <li><h3>Paperwork</h3><p>Documents you need for your MPCB consent file.</p></li>
+      <li><h3>Maintain</h3><p>Optional AMC so the device and set stay compliant.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split">
+    <div><h2>Common questions</h2></div>
+    <div class="faq">
+      <details><summary>What is an RECD?</summary><p>A Retrofit Emission Control Device is fitted to an existing genset's exhaust to capture most of the particulate matter (soot) it produces. Only devices certified by an approved testing agency should be used.</p></details>
+      <details><summary>How long does fitting take?</summary><p>Usually a day or two on site once the device is available, depending on the set and exhaust route. We plan it to avoid power cuts at your site.</p></details>
+      <details><summary>What happens if I don't comply?</summary><p>MPCB can take action under your consent conditions, including forfeiting the bank guarantee given with your consent. Check your consent letter and the circular.</p></details>
+      <details><summary>Is it cheaper to replace the set?</summary><p>Sometimes. If your set is old or needs an overhaul, a compliant replacement plus buy-back of the old set can cost less over a few years. We quote both.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-steel" id="quote">
+  <div class="wrap split">
+    <div>
+      <h2>Book a compliance survey</h2>
+      <p class="lede">Send a photo of your genset's nameplate on WhatsApp and we'll tell you what it needs.</p>
+      <a class="btn btn-wa" href="{{ m.wa_link('Hello HOPE, I need RECD / MPCB compliance for my genset. Rating: ___ Site: ___ (nameplate photo attached)') }}" rel="noopener">{{ m.icon('wa') }}Send nameplate photo</a>
+    </div>
+    {{ m.quote_form(root, need='recd', heading='Compliance enquiry') }}
+  </div>
+</section>
+{% endblock %}
+{% block cta %}{% endblock %}
